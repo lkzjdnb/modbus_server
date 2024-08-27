@@ -31,10 +31,10 @@ def main():
     servers = []
     for i in range(args.number):
         port = 4502 + i
-        s = ModbusServer(data_hdl = MyDataHandler(input_register, holding_register, args.wait, read_event), port = port, no_block=True)
+        s = ModbusServer(data_hdl = MyDataHandler(input_register, holding_register, args.wait, read_event), port = port, no_block=True, host = "0.0.0.0")
         s.start()
         servers.append(s)
-        print(f"Started on port {port}")
+        print(f"Started on port {port}", flush=True)
 
     # Wait until a read as been performed
     if(args.disconnect):
